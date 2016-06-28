@@ -16,8 +16,15 @@
 		9AF5BBA91D2101FC002A3718 /* TwitterClientUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBA81D2101FC002A3718 /* TwitterClientUITests.m */; };
 		9AF5BBB91D210215002A3718 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBB71D210215002A3718 /* HomeViewController.m */; };
 		9AF5BBBA1D210215002A3718 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBB81D210215002A3718 /* HomeViewController.xib */; };
-		9AF5BBBC1D211072002A3718 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBBB1D211072002A3718 /* twitter.png */; };
 		9AF5BBBE1D211E1F002A3718 /* memo in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBBD1D211E1F002A3718 /* memo */; };
+		9AF5BBC81D225400002A3718 /* RegisterWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBC61D225400002A3718 /* RegisterWordViewController.m */; };
+		9AF5BBC91D225400002A3718 /* RegisterWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBC71D225400002A3718 /* RegisterWordViewController.xib */; };
+		9AF5BBCD1D22541D002A3718 /* WordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBCB1D22541D002A3718 /* WordListViewController.m */; };
+		9AF5BBCE1D22541D002A3718 /* WordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBCC1D22541D002A3718 /* WordListViewController.xib */; };
+		9AF5BBD01D22592F002A3718 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBCF1D22592F002A3718 /* twitter.png */; };
+		9AF5BBDA1D226014002A3718 /* WordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBD81D226014002A3718 /* WordTableViewCell.m */; };
+		9AF5BBDB1D226014002A3718 /* WordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBD91D226014002A3718 /* WordTableViewCell.xib */; };
+		9AF5BBDF1D226B34002A3718 /* WordDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBDE1D226B34002A3718 /* WordDB.m */; };
 		AC5988ADECF2C7E9BF4454E2 /* libPods-TwitterClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF1B254F58BBCCD655E8DE7 /* libPods-TwitterClient.a */; };
 		C3014E625EB54A488390E3DB /* libPods-TwitterClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA350FA13D7CE547FDC53343 /* libPods-TwitterClientTests.a */; };
 /* End PBXBuildFile section */
@@ -62,8 +69,19 @@
 		9AF5BBB61D210215002A3718 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9AF5BBB71D210215002A3718 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9AF5BBB81D210215002A3718 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
-		9AF5BBBB1D211072002A3718 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = ../../twitter.png; sourceTree = "<group>"; };
 		9AF5BBBD1D211E1F002A3718 /* memo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = memo; sourceTree = "<group>"; };
+		9AF5BBC51D225400002A3718 /* RegisterWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterWordViewController.h; path = TwitterClient/RegisterWordViewController.h; sourceTree = SOURCE_ROOT; };
+		9AF5BBC61D225400002A3718 /* RegisterWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterWordViewController.m; path = TwitterClient/RegisterWordViewController.m; sourceTree = SOURCE_ROOT; };
+		9AF5BBC71D225400002A3718 /* RegisterWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegisterWordViewController.xib; path = TwitterClient/RegisterWordViewController.xib; sourceTree = SOURCE_ROOT; };
+		9AF5BBCA1D22541D002A3718 /* WordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListViewController.h; sourceTree = "<group>"; };
+		9AF5BBCB1D22541D002A3718 /* WordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListViewController.m; sourceTree = "<group>"; };
+		9AF5BBCC1D22541D002A3718 /* WordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListViewController.xib; sourceTree = "<group>"; };
+		9AF5BBCF1D22592F002A3718 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = ../../../twitter.png; sourceTree = "<group>"; };
+		9AF5BBD71D226014002A3718 /* WordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordTableViewCell.h; sourceTree = "<group>"; };
+		9AF5BBD81D226014002A3718 /* WordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordTableViewCell.m; sourceTree = "<group>"; };
+		9AF5BBD91D226014002A3718 /* WordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordTableViewCell.xib; sourceTree = "<group>"; };
+		9AF5BBDD1D226B34002A3718 /* WordDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDB.h; sourceTree = "<group>"; };
+		9AF5BBDE1D226B34002A3718 /* WordDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDB.m; sourceTree = "<group>"; };
 		BD43D9D3F82198611E228020 /* Pods-TwitterClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterClientTests/Pods-TwitterClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		D5274BCF397F662BCBF7B95F /* Pods-TwitterClientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClientUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterClientUITests/Pods-TwitterClientUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA350FA13D7CE547FDC53343 /* libPods-TwitterClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TwitterClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,12 +164,14 @@
 		9AF5BB821D2101FC002A3718 /* TwitterClient */ = {
 			isa = PBXGroup;
 			children = (
-				9AF5BBBB1D211072002A3718 /* twitter.png */,
+				9AF5BBCF1D22592F002A3718 /* twitter.png */,
+				9AF5BBDC1D226B01002A3718 /* Database */,
 				9AF5BB861D2101FC002A3718 /* AppDelegate.h */,
 				9AF5BB871D2101FC002A3718 /* AppDelegate.m */,
-				9AF5BBB61D210215002A3718 /* HomeViewController.h */,
-				9AF5BBB71D210215002A3718 /* HomeViewController.m */,
-				9AF5BBB81D210215002A3718 /* HomeViewController.xib */,
+				9AF5BBD71D226014002A3718 /* WordTableViewCell.h */,
+				9AF5BBD81D226014002A3718 /* WordTableViewCell.m */,
+				9AF5BBD91D226014002A3718 /* WordTableViewCell.xib */,
+				9AF5BBE01D227552002A3718 /* viewControllers */,
 				9AF5BB8F1D2101FC002A3718 /* Assets.xcassets */,
 				9AF5BB911D2101FC002A3718 /* LaunchScreen.storyboard */,
 				9AF5BB941D2101FC002A3718 /* Info.plist */,
@@ -184,6 +204,31 @@
 				9AF5BBAA1D2101FC002A3718 /* Info.plist */,
 			);
 			path = TwitterClientUITests;
+			sourceTree = "<group>";
+		};
+		9AF5BBDC1D226B01002A3718 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				9AF5BBDD1D226B34002A3718 /* WordDB.h */,
+				9AF5BBDE1D226B34002A3718 /* WordDB.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		9AF5BBE01D227552002A3718 /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AF5BBC51D225400002A3718 /* RegisterWordViewController.h */,
+				9AF5BBC61D225400002A3718 /* RegisterWordViewController.m */,
+				9AF5BBC71D225400002A3718 /* RegisterWordViewController.xib */,
+				9AF5BBCA1D22541D002A3718 /* WordListViewController.h */,
+				9AF5BBCB1D22541D002A3718 /* WordListViewController.m */,
+				9AF5BBCC1D22541D002A3718 /* WordListViewController.xib */,
+				9AF5BBB61D210215002A3718 /* HomeViewController.h */,
+				9AF5BBB71D210215002A3718 /* HomeViewController.m */,
+				9AF5BBB81D210215002A3718 /* HomeViewController.xib */,
+			);
+			name = viewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,10 +343,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF5BBBE1D211E1F002A3718 /* memo in Resources */,
+				9AF5BBD01D22592F002A3718 /* twitter.png in Resources */,
 				9AF5BB931D2101FC002A3718 /* LaunchScreen.storyboard in Resources */,
-				9AF5BBBC1D211072002A3718 /* twitter.png in Resources */,
+				9AF5BBC91D225400002A3718 /* RegisterWordViewController.xib in Resources */,
 				9AF5BB901D2101FC002A3718 /* Assets.xcassets in Resources */,
+				9AF5BBDB1D226014002A3718 /* WordTableViewCell.xib in Resources */,
 				9AF5BBBA1D210215002A3718 /* HomeViewController.xib in Resources */,
+				9AF5BBCE1D22541D002A3718 /* WordListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,8 +498,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF5BB881D2101FC002A3718 /* AppDelegate.m in Sources */,
+				9AF5BBDA1D226014002A3718 /* WordTableViewCell.m in Sources */,
 				9AF5BB851D2101FC002A3718 /* main.m in Sources */,
 				9AF5BBB91D210215002A3718 /* HomeViewController.m in Sources */,
+				9AF5BBDF1D226B34002A3718 /* WordDB.m in Sources */,
+				9AF5BBCD1D22541D002A3718 /* WordListViewController.m in Sources */,
+				9AF5BBC81D225400002A3718 /* RegisterWordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

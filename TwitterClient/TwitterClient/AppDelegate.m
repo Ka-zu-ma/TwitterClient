@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import "WordListViewController.h"
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 
@@ -21,13 +22,40 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    HomeViewController *viewController = [[HomeViewController alloc] init];
     
-    [self.window setRootViewController:viewController];
+    
+    HomeViewController *homeViewController = [[HomeViewController alloc] init];
+    WordListViewController *wordListViewController = [[WordListViewController alloc] init];
+    
+    UINavigationController *naviController = [[UINavigationController alloc] initWithRootViewController:wordListViewController];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    NSArray *viewControllers = @[homeViewController,naviController];
+    
+    [tabBarController setViewControllers:viewControllers];
+    
+    //tabBarControllerの配列を設定したあとで、タイトル設定
+    UITabBarItem *tabBarItem1 = [tabBarController.tabBar.items objectAtIndex:0];
+    tabBarItem1.title = @"ホーム";
+    UITabBarItem *tabBarItem2 = [tabBarController.tabBar.items objectAtIndex:1];
+    tabBarItem2.title = @"マイワード";
+    
+    [self.window setRootViewController:tabBarController];
     [self.window makeKeyAndVisible];
     
+    //ナビゲーションバーの色の設定
+    //背景カラー
+    [UINavigationBar appearance].barTintColor = [UIColor yellowColor];
+    //バーアイテムカラー
+    [UINavigationBar appearance].tintColor = [UIColor blackColor];
+    //タイトルカラー
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+
+    
+    
     //APIKeyとAPISecretをオーバーライド　
-    [[Twitter sharedInstance] startWithConsumerKey:@"aoJteFC53UeAujxzyp3p8MHR5" consumerSecret:@""];
+    [[Twitter sharedInstance] startWithConsumerKey:@"aoJteFC53UeAujxzyp3p8MHR5" consumerSecret:@"owO356RmYQXufbOu0YOrpnjDRnz4ZlsH6QbdMYkdixLl34pxSm"];
 
     
     [Fabric with:@[[Twitter class]]];

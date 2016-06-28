@@ -9,6 +9,7 @@ target 'TwitterClient' do
 pod 'Fabric'
 pod 'TwitterKit'
 pod 'TwitterCore'
+pod 'FMDB'
 
   target 'TwitterClientTests' do
     inherit! :search_paths
