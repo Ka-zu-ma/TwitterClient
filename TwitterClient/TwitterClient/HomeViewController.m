@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import <TwitterKit/TwitterKit.h>
+#import "WordDB.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -31,6 +32,24 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
+    
+    
+//    [[Twitter sharedInstance] logInWithCompletion:^
+//     (TWTRSession *session, NSError *error) {
+//         if (session) {
+//             NSLog(@"signed in as %@", [session userName]);
+//         } else {
+//             NSLog(@"error: %@", [error localizedDescription]);
+//         }
+//     }];
+
+    
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
     //ログインボタン
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (error) {
@@ -50,18 +69,6 @@
     _logInButton = logInButton;
     [self.view addSubview:logInButton];
     
-//    [[Twitter sharedInstance] logInWithCompletion:^
-//     (TWTRSession *session, NSError *error) {
-//         if (session) {
-//             NSLog(@"signed in as %@", [session userName]);
-//         } else {
-//             NSLog(@"error: %@", [error localizedDescription]);
-//         }
-//     }];
-
-    
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
 -(void)didReceiveMemoryWarning {
@@ -72,8 +79,39 @@
 //あるワードを含むツイートを取得
 -(void)loadTweetsOfWord:(NSString *)userId{
     
+    //DBから特定ワードを全て取得
+    NSMutableArray *words = [WordDB selectTable];
+    
+    NSInteger wordsCount = words.count;
+    
+    NSString *wordsString = @"";
+    
+    //OR検索
+    NSString *orString = @" OR ";
+    
+    for (int i = 0; i <= wordsCount - 1; i++) {
+        
+        wordsString = [wordsString stringByAppendingString:words[i]];
+        
+        if (i != wordsCount - 1) {
+            wordsString = [wordsString stringByAppendingString:orString];
+        }
+    }
+    
+//NSLog(@"wordString:%@",wordsString);
+    
+    if (wordsString.length == 0) {
+        return;
+    }
+    
+    //リツイートを除く
+    NSString *excludeRetweets = @" exclude:retweets";
+    
+    wordsString = [wordsString stringByAppendingString:excludeRetweets];
+    
     NSString *endpoint = @"https://api.twitter.com/1.1/search/tweets.json";
-    NSDictionary *parameters = @{@"q":@"プログラミング",@"count":@"20"};
+    
+    NSDictionary *parameters = @{@"q":wordsString,@"count":@"20"};
     NSError *error = nil;
     TWTRAPIClient *client = [[TWTRAPIClient alloc] initWithUserID:userId];
     NSURLRequest *request = [client URLRequestWithMethod:@"GET"

@@ -10,6 +10,7 @@
 #import "RegisterWordViewController.h"
 #import "WordTableViewCell.h"
 #import "WordDB.h"
+#import "TweetViewController.h"
 
 @interface WordListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *wordListTableView;
@@ -82,6 +83,17 @@
     }];
     
     return @[deleteAction];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    TweetViewController *viewController = [[TweetViewController alloc] init];
+    
+    UITableViewCell *cell=[_wordListTableView cellForRowAtIndexPath:indexPath];
+    
+    viewController.wordString = cell.textLabel.text;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

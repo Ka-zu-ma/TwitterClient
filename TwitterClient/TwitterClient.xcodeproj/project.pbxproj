@@ -25,6 +25,8 @@
 		9AF5BBDA1D226014002A3718 /* WordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBD81D226014002A3718 /* WordTableViewCell.m */; };
 		9AF5BBDB1D226014002A3718 /* WordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBD91D226014002A3718 /* WordTableViewCell.xib */; };
 		9AF5BBDF1D226B34002A3718 /* WordDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBDE1D226B34002A3718 /* WordDB.m */; };
+		9AF5BBE41D22DAB6002A3718 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5BBE21D22DAB6002A3718 /* TweetViewController.m */; };
+		9AF5BBE51D22DAB6002A3718 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AF5BBE31D22DAB6002A3718 /* TweetViewController.xib */; };
 		AC5988ADECF2C7E9BF4454E2 /* libPods-TwitterClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF1B254F58BBCCD655E8DE7 /* libPods-TwitterClient.a */; };
 		C3014E625EB54A488390E3DB /* libPods-TwitterClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA350FA13D7CE547FDC53343 /* libPods-TwitterClientTests.a */; };
 /* End PBXBuildFile section */
@@ -82,6 +84,9 @@
 		9AF5BBD91D226014002A3718 /* WordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordTableViewCell.xib; sourceTree = "<group>"; };
 		9AF5BBDD1D226B34002A3718 /* WordDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDB.h; sourceTree = "<group>"; };
 		9AF5BBDE1D226B34002A3718 /* WordDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDB.m; sourceTree = "<group>"; };
+		9AF5BBE11D22DAB6002A3718 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
+		9AF5BBE21D22DAB6002A3718 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
+		9AF5BBE31D22DAB6002A3718 /* TweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
 		BD43D9D3F82198611E228020 /* Pods-TwitterClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterClientTests/Pods-TwitterClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		D5274BCF397F662BCBF7B95F /* Pods-TwitterClientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClientUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterClientUITests/Pods-TwitterClientUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA350FA13D7CE547FDC53343 /* libPods-TwitterClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TwitterClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +232,9 @@
 				9AF5BBB61D210215002A3718 /* HomeViewController.h */,
 				9AF5BBB71D210215002A3718 /* HomeViewController.m */,
 				9AF5BBB81D210215002A3718 /* HomeViewController.xib */,
+				9AF5BBE11D22DAB6002A3718 /* TweetViewController.h */,
+				9AF5BBE21D22DAB6002A3718 /* TweetViewController.m */,
+				9AF5BBE31D22DAB6002A3718 /* TweetViewController.xib */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -347,6 +355,7 @@
 				9AF5BB931D2101FC002A3718 /* LaunchScreen.storyboard in Resources */,
 				9AF5BBC91D225400002A3718 /* RegisterWordViewController.xib in Resources */,
 				9AF5BB901D2101FC002A3718 /* Assets.xcassets in Resources */,
+				9AF5BBE51D22DAB6002A3718 /* TweetViewController.xib in Resources */,
 				9AF5BBDB1D226014002A3718 /* WordTableViewCell.xib in Resources */,
 				9AF5BBBA1D210215002A3718 /* HomeViewController.xib in Resources */,
 				9AF5BBCE1D22541D002A3718 /* WordListViewController.xib in Resources */,
@@ -497,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF5BBE41D22DAB6002A3718 /* TweetViewController.m in Sources */,
 				9AF5BB881D2101FC002A3718 /* AppDelegate.m in Sources */,
 				9AF5BBDA1D226014002A3718 /* WordTableViewCell.m in Sources */,
 				9AF5BB851D2101FC002A3718 /* main.m in Sources */,
