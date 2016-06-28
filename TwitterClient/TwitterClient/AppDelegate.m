@@ -55,7 +55,7 @@
     
     
     //APIKeyとAPISecretをオーバーライド　
-    [[Twitter sharedInstance] startWithConsumerKey:@"aoJteFC53UeAujxzyp3p8MHR5" consumerSecret:@"owO356RmYQXufbOu0YOrpnjDRnz4ZlsH6QbdMYkdixLl34pxSm"];
+    [[Twitter sharedInstance] startWithConsumerKey:@"aoJteFC53UeAujxzyp3p8MHR5" consumerSecret:@""];
 
     
     [Fabric with:@[[Twitter class]]];
