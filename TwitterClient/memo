@@ -1,0 +1,2 @@
+fabric経由でフレームワークをインスコすると、twitterKitとtwitterCoreのバージョンが合わないので、podで手動インスコ
+githubにアップするとき、secretを削除するのを忘れずに。
