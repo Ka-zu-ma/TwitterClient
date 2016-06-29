@@ -12,7 +12,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -35,6 +35,8 @@
     
     [tabBarController setViewControllers:viewControllers];
     
+    tabBarController.delegate = self;
+    
     //tabBarControllerの配列を設定したあとで、タイトル設定
     UITabBarItem *tabBarItem1 = [tabBarController.tabBar.items objectAtIndex:0];
     tabBarItem1.title = @"ホーム";
@@ -54,8 +56,8 @@
 
     
     
-    //APIKeyとAPISecretをオーバーライド　
-    [[Twitter sharedInstance] startWithConsumerKey:@"aoJteFC53UeAujxzyp3p8MHR5" consumerSecret:@""];
+    //Kitを初期化
+    [[Twitter sharedInstance] startWithConsumerKey:@"4CEUZm24hEYGvwEV08eW4npg9" consumerSecret:@"NY0qbFkuCqq5opNBMvLKY4US5fhE2KOi9kdGVReC4jqdfLLjfG"];
 
     
     [Fabric with:@[[Twitter class]]];
@@ -63,6 +65,31 @@
     
     // Override point for customization after application launch.
     return YES;
+}
+
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    
+    switch (viewController.view.tag) {
+        case 0:
+            
+//            viewController = [[HomeViewController alloc] init];
+//            
+//            [viewController :];
+            
+//            NSLog(@"あああ");
+            
+            
+            break;
+            
+        case 1:
+            
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

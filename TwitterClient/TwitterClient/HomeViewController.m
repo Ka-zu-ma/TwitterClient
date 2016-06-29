@@ -18,12 +18,12 @@
 
 @property (strong, nonatomic) NSArray *tweets;
 
-
+@property (strong,nonatomic) NSString *userID;
 @end
 
 @implementation HomeViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
     
     [_tableView registerClass:[TWTRTweetTableViewCell class] forCellReuseIdentifier:@"Cell"];
@@ -31,24 +31,6 @@
     _tableView.hidden = YES;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
-    
-    
-//    [[Twitter sharedInstance] logInWithCompletion:^
-//     (TWTRSession *session, NSError *error) {
-//         if (session) {
-//             NSLog(@"signed in as %@", [session userName]);
-//         } else {
-//             NSLog(@"error: %@", [error localizedDescription]);
-//         }
-//     }];
-
-    
-    
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewWillAppear:(BOOL)animated{
     
     //ログインボタン
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
@@ -59,8 +41,10 @@
             _logInButton.hidden = YES;
             _tableView.hidden = NO;
             
-            [self loadTweetsOfWord:session.userID];
             
+            
+            [self loadTweetsOfWords:session.userID];
+
             NSLog(@"UserName : %@", session.userName);
         }
     }];
@@ -69,15 +53,35 @@
     _logInButton = logInButton;
     [self.view addSubview:logInButton];
     
+    
+    
+
+    // Do any additional setup after loading the view from its nib.
 }
+
+//-(void)viewWillAppear:(BOOL)animated{
+//    
+//    [[Twitter sharedInstance] logInWithCompletion:^
+//     (TWTRSession *session, NSError *error) {
+//         if (session) {
+//             NSLog(@"signed in as %@", [session userName]);
+//             
+//             
+//         } else {
+//             NSLog(@"error: %@", [error localizedDescription]);
+//         }
+//     }];
+//}
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+
 //あるワードを含むツイートを取得
--(void)loadTweetsOfWord:(NSString *)userId{
+-(void)loadTweetsOfWords:(NSString *)userId{
     
     //DBから特定ワードを全て取得
     NSMutableArray *words = [WordDB selectTable];

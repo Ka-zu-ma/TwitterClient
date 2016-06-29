@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UIViewController
-
+-(void)loadTweetsOfWords:(NSString *)userId;
 @end

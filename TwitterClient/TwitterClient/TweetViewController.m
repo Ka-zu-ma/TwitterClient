@@ -26,6 +26,7 @@
     
     [_tableView registerClass:[TWTRTweetTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
+    //ログイン
     [[Twitter sharedInstance] logInWithCompletion:^
      (TWTRSession *session, NSError *error) {
          if (session) {
