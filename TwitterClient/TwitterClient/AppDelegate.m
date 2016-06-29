@@ -57,7 +57,7 @@
     
     
     //Kitを初期化
-    [[Twitter sharedInstance] startWithConsumerKey:@"4CEUZm24hEYGvwEV08eW4npg9" consumerSecret:@"NY0qbFkuCqq5opNBMvLKY4US5fhE2KOi9kdGVReC4jqdfLLjfG"];
+    [[Twitter sharedInstance] startWithConsumerKey:@"4CEUZm24hEYGvwEV08eW4npg9" consumerSecret:@""];
 
     
     [Fabric with:@[[Twitter class]]];
