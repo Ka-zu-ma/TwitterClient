@@ -1,6 +1,6 @@
 # TwitterClient
 
-  fabric経由でフレームワークをインスコすると、twitterKitとtwitterCoreのバージョンが合わないので、podで手動インスコした
+fabric経由でフレームワークをインスコすると、twitterKitとtwitterCoreのバージョンが合わないので、podで手動インストールした  
 githubにアップするとき、secretを削除するのを忘れずに。
 
 ログインボタンが真ん中にくるように。
