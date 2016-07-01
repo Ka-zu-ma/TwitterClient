@@ -56,16 +56,37 @@
             
             _session = session;
             
+            //ツイッターログインボタンに表示させるときに隠していたtabbarを表示
+            self.tabBarController.tabBar.hidden = NO;
             
             [self loadTweetsOfWords:session.userID];
 
             NSLog(@"UserName : %@", session.userName);
         }
     }];
-    
-    logInButton.center = self.view.center;
     _logInButton = logInButton;
+    
+    // AutoresizingMaskを使用しない
+    //（これはAutoLayoutを使用するときには必須の設定）
+    logInButton.translatesAutoresizingMaskIntoConstraints = NO;
+    
     [self.view addSubview:logInButton];
+    
+//    logInButton.center = self.view.center;
+    
+    //高さ autolayout
+    [logInButton addConstraint:[NSLayoutConstraint constraintWithItem:logInButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:100]];
+    
+    //下
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logInButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+    
+    //左
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logInButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0]];
+    //右
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logInButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0]];
+    
+    
+    
     
     
     
@@ -157,8 +178,8 @@
                             NSLog(@"Error: %@", jsonError);
                             return;
                         }
-                        
-                        NSLog(@"maxidは、%@",jsonData[@"statuses"][@"max_id"]);
+//                        NSLog(@"json:%@",jsonData);
+//                        NSLog(@"maxidは、%@",jsonData[@"statuses"][@"max_id"]);
                         //search/tweets で返ってくるデータには直接各ツイートのデータが入っているのではなく、statusesという階層を挟んでる
                         weakSelf.tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
                         
@@ -200,8 +221,8 @@
     TWTRTweetTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     
-    if (_tweets.count > indexPath.row) {
-        
+//    if (_tweets.count > indexPath.row) {
+    
         [cell configureWithTweet:_tweets[indexPath.row]];
 //        cell.tweetView.delegate = self;
         
@@ -211,7 +232,7 @@
 
 //        }
         
-    }
+//    }
     
     return cell;
 

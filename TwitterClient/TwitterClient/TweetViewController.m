@@ -11,6 +11,10 @@
 
 @interface TweetViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic) UIRefreshControl *refreshControl;
+
+@property(nonatomic) TWTRSession *session;
+
 
 @property (strong, nonatomic) NSArray *tweets;
 
@@ -25,6 +29,16 @@
     _tableView.dataSource = self;
     
     [_tableView registerClass:[TWTRTweetTableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
+    // Refresh Control のインスタンス化
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    // ユーザーが Pull to refresh したときのハンドラを設定
+    [refreshControl addTarget:self
+                       action:@selector(refreshControlStateChanged)
+             forControlEvents:UIControlEventValueChanged];
+    // TableViewに追加
+    [_tableView addSubview:refreshControl];
+    self.refreshControl = refreshControl;
     
     //ログイン
     [[Twitter sharedInstance] logInWithCompletion:^
@@ -94,6 +108,27 @@
                     }];
     
 }
+
+-(void)refreshControlStateChanged{
+    
+    // 3 秒待ってからハンドリングを行う、URL リクエストとレスポンスに似せたダミーコード
+    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
+    //    dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+    // モデルの更新などのレスポンス処理...
+    
+    [self loadTweetsOfWord:_session.userID];
+    
+    
+    // UI 更新
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    
+    [self.refreshControl endRefreshing];
+    //        });
+    //    });
+    
+}
+
 
 
 #pragma mark - TableView Datasource

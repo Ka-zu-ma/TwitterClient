@@ -43,6 +43,9 @@
     UITabBarItem *tabBarItem2 = [tabBarController.tabBar.items objectAtIndex:1];
     tabBarItem2.title = @"マイワード";
     
+    //ツイッターログインボタンにタブバーが被らないようにタブバーを非表示
+    tabBarController.tabBar.hidden = YES;
+    
     [self.window setRootViewController:tabBarController];
     [self.window makeKeyAndVisible];
     
@@ -57,7 +60,7 @@
     
     
     //Kitを初期化
-    [[Twitter sharedInstance] startWithConsumerKey:@"4CEUZm24hEYGvwEV08eW4npg9" consumerSecret:@""];
+    [[Twitter sharedInstance] startWithConsumerKey:@"sHisce8Kcw0ECAeJ3OSbFlxpv" consumerSecret:@""];
 
     
     [Fabric with:@[[Twitter class]]];
