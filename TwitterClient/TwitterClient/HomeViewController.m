@@ -13,6 +13,9 @@
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) TWTRLogInButton *logInButton;
+@property(nonatomic) UIRefreshControl *refreshControl;
+
+@property(nonatomic) TWTRSession *session;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -32,6 +35,16 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
+    // Refresh Control のインスタンス化
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    // ユーザーが Pull to refresh したときのハンドラを設定
+    [refreshControl addTarget:self
+                       action:@selector(refreshControlStateChanged)
+             forControlEvents:UIControlEventValueChanged];
+    // TableViewに追加
+    [_tableView addSubview:refreshControl];
+    self.refreshControl = refreshControl;
+    
     //ログインボタン
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (error) {
@@ -41,6 +54,7 @@
             _logInButton.hidden = YES;
             _tableView.hidden = NO;
             
+            _session = session;
             
             
             [self loadTweetsOfWords:session.userID];
@@ -143,51 +157,34 @@
                             NSLog(@"Error: %@", jsonError);
                             return;
                         }
+                        
+                        NSLog(@"maxidは、%@",jsonData[@"statuses"][@"max_id"]);
                         //search/tweets で返ってくるデータには直接各ツイートのデータが入っているのではなく、statusesという階層を挟んでる
                         weakSelf.tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
+                        
+                        
                         [weakSelf.tableView reloadData];
                     }];
     
 }
 
+-(void)refreshControlStateChanged{
+    
+    // 3 秒待ってからハンドリングを行う、URL リクエストとレスポンスに似せたダミーコード
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+        // モデルの更新などのレスポンス処理...
+        
+        [self loadTweetsOfWords:_session.userID];
 
+        
+        // UI 更新
+//        dispatch_async(dispatch_get_main_queue(), ^{
 
-//あるUserIDのタイムラインを取得
--(void)loadTweets:(NSString *)userId{
-    
-    // タイムラインを取得
-    NSString *endpoint = @"https://api.twitter.com/1.1/statuses/home_timeline.json";
-    NSDictionary *parameters = @{};
-    NSError *error = nil;
-    TWTRAPIClient *client = [[TWTRAPIClient alloc] initWithUserID:userId];
-    NSURLRequest *request = [client URLRequestWithMethod:@"GET"
-                                                     URL:endpoint
-                                              parameters:parameters
-                                                   error:&error];
-    if (error) {
-        NSLog(@"Error: %@", error);
-        return;
-    }
-    __weak typeof(self) weakSelf = self;
-    
-    [client sendTwitterRequest:request
-                    completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                        if (connectionError) {
-                            NSLog(@"Error: %@", error);
-                            return;
-                        }
-                        NSError *jsonError = nil;
-                        id jsonData = [NSJSONSerialization JSONObjectWithData:data
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-                        if (jsonError) {
-                            NSLog(@"Error: %@", jsonError);
-                            return;
-                        }
-                        weakSelf.tweets = [TWTRTweet tweetsWithJSONArray:jsonData];
-                        [weakSelf.tableView reloadData];
-                    }];
-    
+            [self.refreshControl endRefreshing];
+//        });
+//    });
     
 }
 
@@ -202,7 +199,19 @@
     
     TWTRTweetTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    [cell configureWithTweet:_tweets[indexPath.row]];
+    
+    if (_tweets.count > indexPath.row) {
+        
+        [cell configureWithTweet:_tweets[indexPath.row]];
+//        cell.tweetView.delegate = self;
+        
+//        if ((_tweets.count - 1) == indexPath.row && self.maxIdStr != "") {
+        
+            [self loadTweetsOfWords:_session.userID];
+
+//        }
+        
+    }
     
     return cell;
 

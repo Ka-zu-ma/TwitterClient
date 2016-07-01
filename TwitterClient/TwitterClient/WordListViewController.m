@@ -71,7 +71,7 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //削除ボタン
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"削除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         
         UITableViewCell *cell=[_wordListTableView cellForRowAtIndexPath:indexPath];
         
