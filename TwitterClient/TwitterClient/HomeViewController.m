@@ -41,6 +41,7 @@
     [refreshControl addTarget:self
                        action:@selector(refreshControlStateChanged)
              forControlEvents:UIControlEventValueChanged];
+    
     // TableViewに追加
     [_tableView addSubview:refreshControl];
     self.refreshControl = refreshControl;
@@ -72,8 +73,6 @@
     
     [self.view addSubview:logInButton];
     
-//    logInButton.center = self.view.center;
-    
     //高さ autolayout
     [logInButton addConstraint:[NSLayoutConstraint constraintWithItem:logInButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1.0 constant:100]];
     
@@ -85,12 +84,6 @@
     //右
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:logInButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0]];
     
-    
-    
-    
-    
-    
-
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -167,7 +160,8 @@
     [client sendTwitterRequest:request
                     completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                         if (connectionError) {
-                            NSLog(@"Error: %@", error);
+                            
+                            NSLog(@"connectionerror: %@", connectionError);
                             return;
                         }
                         NSError *jsonError = nil;
@@ -191,9 +185,12 @@
 
 -(void)refreshControlStateChanged{
     
+    
     // 3 秒待ってからハンドリングを行う、URL リクエストとレスポンスに似せたダミーコード
 //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
 //    dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+    _tweets = [[NSMutableArray alloc] init];
     
         // モデルの更新などのレスポンス処理...
         

@@ -13,6 +13,9 @@
 ネガティブ系ワード、ポジティブ系ワードでセルを色分け  
 ワード登録画面で、UISegmentedControlでポジティブ、ネガティブ選べるようにする  
 
-###注意点
+###補足
 fabric経由でフレームワークをインスコすると、twitterKitとtwitterCoreのバージョンが合わないので、podで手動インストールした  
 githubにアップするとき、secretを削除するのを忘れずに。
+
+###エラー
+[Fabric] failed to download settings Error Domain=FABNetworkError Code=-5 "(null)" UserInfo={status_code=403, type=2, request_id=0141cd74a897828aa0cc306290c10629, content_type=application/json; charset=utf-8}
