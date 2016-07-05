@@ -18,4 +18,4 @@ fabric経由でフレームワークをインスコすると、twitterKitとtwit
 githubにアップするとき、secretを削除するのを忘れずに。
 
 ###エラー
-[Fabric] failed to download settings Error Domain=FABNetworkError Code=-5 "(null)" UserInfo={status_code=403, type=2, request_id=0141cd74a897828aa0cc306290c10629, content_type=application/json; charset=utf-8}
+
