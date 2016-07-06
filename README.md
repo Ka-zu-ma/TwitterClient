@@ -18,5 +18,5 @@ fabric経由でフレームワークをインスコすると、twitterKitとtwit
 githubにアップするとき、secretを削除するのを忘れずに。
 
 ###エラー
-connectionError: Error Domain=TwitterAPIErrorDomain Code=88 "Request failed: client error (429)" 
-
+connectionError: Error Domain=TwitterAPIErrorDomain Code=88 "Request failed: client error (429)"  
+2回目以降、APIを叩くと、このエラーが出る。しばらく時間が経ってから、叩くと出なくなる
