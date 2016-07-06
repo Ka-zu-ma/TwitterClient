@@ -143,7 +143,7 @@
     
     NSString *endpoint = @"https://api.twitter.com/1.1/search/tweets.json";
     
-    NSDictionary *parameters = @{@"q":wordsString,@"count":@"20"};
+    NSDictionary *parameters = @{@"q":wordsString,@"count":@"10"};
     NSError *error = nil;
     TWTRAPIClient *client = [[TWTRAPIClient alloc] initWithUserID:userId];
     NSURLRequest *request = [client URLRequestWithMethod:@"GET"
@@ -155,13 +155,16 @@
         NSLog(@"Error: %@", error);
         return;
     }
+    
+    //ブロックの外で定義された変数をブロック内で使うとき、その変数はブロック内に strong 参照でキャプチャされる。
+    //循環参照を引き起こすのを防止
     __weak typeof(self) weakSelf = self;
     
     [client sendTwitterRequest:request
                     completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                         if (connectionError) {
                             
-                            NSLog(@"connectionerror: %@", connectionError);
+                            NSLog(@"connectionError: %@", connectionError);
                             return;
                         }
                         NSError *jsonError = nil;
@@ -217,10 +220,10 @@
     
     TWTRTweetTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    
 //    if (_tweets.count > indexPath.row) {
     
         [cell configureWithTweet:_tweets[indexPath.row]];
+    
 //        cell.tweetView.delegate = self;
         
 //        if ((_tweets.count - 1) == indexPath.row && self.maxIdStr != "") {

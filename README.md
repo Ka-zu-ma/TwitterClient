@@ -9,7 +9,7 @@
 各ワードのツイート一覧で、ナビゲーションタイテムのタイトルをクリックすると、最新ツイートまで既読   
 ロールバックいれる
 
-###後回し
+###やるかわからない、あとまわし
 ネガティブ系ワード、ポジティブ系ワードでセルを色分け  
 ワード登録画面で、UISegmentedControlでポジティブ、ネガティブ選べるようにする  
 
@@ -18,4 +18,5 @@ fabric経由でフレームワークをインスコすると、twitterKitとtwit
 githubにアップするとき、secretを削除するのを忘れずに。
 
 ###エラー
+connectionError: Error Domain=TwitterAPIErrorDomain Code=88 "Request failed: client error (429)" 
 

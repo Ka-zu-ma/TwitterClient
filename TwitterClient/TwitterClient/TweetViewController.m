@@ -91,7 +91,8 @@
     [client sendTwitterRequest:request
                     completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                         if (connectionError) {
-                            NSLog(@"Error: %@", error);
+                            
+                            NSLog(@"connectionError: %@", connectionError);
                             return;
                         }
                         NSError *jsonError = nil;
