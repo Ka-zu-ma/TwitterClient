@@ -14,9 +14,7 @@
 ワード登録画面で、UISegmentedControlでポジティブ、ネガティブ選べるようにする  
 
 ###補足
-fabric経由でフレームワークをインスコすると、twitterKitとtwitterCoreのバージョンが合わないので、podで手動インストールした  
-githubにアップするとき、secretを削除するのを忘れずに。
+fabric経由でフレームワークをインストールすると、twitterKitとtwitterCoreのバージョンが合わないので、podで手動インストールした  
+githubにアップするとき、secretを削除する。
 
 ###エラー
-connectionError: Error Domain=TwitterAPIErrorDomain Code=88 "Request failed: client error (429)"  
-2回目以降、APIを叩くと、このエラーが出る。しばらく時間が経ってから、叩くと出なくなる

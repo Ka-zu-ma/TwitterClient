@@ -39,7 +39,7 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     // ユーザーが Pull to refresh したときのハンドラを設定
     [refreshControl addTarget:self
-                       action:@selector(refreshControlStateChanged)
+                       action:@selector(reload)
              forControlEvents:UIControlEventValueChanged];
     
     // TableViewに追加
@@ -49,6 +49,7 @@
     //ログインボタン
     TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
         if (error) {
+            
             NSLog(@"Error : %@", error);
         } else {
             
@@ -177,16 +178,15 @@
                         }
 //                        NSLog(@"json:%@",jsonData);
 //                        NSLog(@"maxidは、%@",jsonData[@"statuses"][@"max_id"]);
-                        //search/tweets で返ってくるデータには直接各ツイートのデータが入っているのではなく、statusesという階層を挟んでる
+                        //search/tweets statusesの中のデータをツイート配列に入れる
                         weakSelf.tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
-                        
                         
                         [weakSelf.tableView reloadData];
                     }];
     
 }
 
--(void)refreshControlStateChanged{
+-(void)reload{
     
     
     // 3 秒待ってからハンドリングを行う、URL リクエストとレスポンスに似せたダミーコード
@@ -219,23 +219,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TWTRTweetTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-//    if (_tweets.count > indexPath.row) {
-    
-        [cell configureWithTweet:_tweets[indexPath.row]];
-    
-//        cell.tweetView.delegate = self;
-        
-//        if ((_tweets.count - 1) == indexPath.row && self.maxIdStr != "") {
-        
-            [self loadTweetsOfWords:_session.userID];
 
-//        }
-        
-//    }
+    [cell configureWithTweet:_tweets[indexPath.row]];
     
     return cell;
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

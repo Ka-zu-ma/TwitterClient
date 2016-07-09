@@ -34,7 +34,7 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     // ユーザーが Pull to refresh したときのハンドラを設定
     [refreshControl addTarget:self
-                       action:@selector(refreshControlStateChanged)
+                       action:@selector(reload)
              forControlEvents:UIControlEventValueChanged];
     // TableViewに追加
     [_tableView addSubview:refreshControl];
@@ -103,21 +103,21 @@
                             NSLog(@"Error: %@", jsonError);
                             return;
                         }
-                        //search/tweets で返ってくるデータには直接各ツイートのデータが入っているのではなく、statusesという階層を挟んでる
+                        //statusesキーのデータを配列に入れる
                         weakSelf.tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
                         [weakSelf.tableView reloadData];
                     }];
     
 }
 
--(void)refreshControlStateChanged{
+-(void)reload{
     
     // 3 秒待ってからハンドリングを行う、URL リクエストとレスポンスに似せたダミーコード
     //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
     //    dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
     // モデルの更新などのレスポンス処理...
-    
+    _tweets = [[NSMutableArray alloc] init];
     [self loadTweetsOfWord:_session.userID];
     
     
@@ -129,8 +129,6 @@
     //    });
     
 }
-
-
 
 #pragma mark - TableView Datasource
 
