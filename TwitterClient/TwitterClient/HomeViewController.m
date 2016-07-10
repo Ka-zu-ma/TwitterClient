@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import <TwitterKit/TwitterKit.h>
 #import "WordDB.h"
+#import "CacheDirectory.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -28,6 +29,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [CacheDirectory createNewDirectory:@"AllWord"];
     
     [_tableView registerClass:[TWTRTweetTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
@@ -168,6 +171,10 @@
                             NSLog(@"connectionError: %@", connectionError);
                             return;
                         }
+                        
+                        [CacheDirectory saveData:data directoryName:nil fileName:@"AllWord"];
+                        
+                        
                         NSError *jsonError = nil;
                         id jsonData = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:NSJSONReadingMutableContainers
