@@ -16,5 +16,6 @@
 
 
 +(void)saveData:(NSData *)data directoryName:(NSString *)directoryName fileName:(NSString *)fileName;
++(NSData *)getData:(NSString *)directoryName fileNameString:(NSString *)fileNameString;
 
 @end

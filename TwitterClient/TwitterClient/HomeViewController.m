@@ -115,6 +115,25 @@
 //あるワードを含むツイートを取得
 -(void)loadTweetsOfWords:(NSString *)userId{
     
+    //どういうときにキャッシュから取得してくるか
+    
+    //キャッシュファイルからデータ取得
+//    NSError *jsonError = nil;
+//    id jsonData = [NSJSONSerialization JSONObjectWithData:[CacheDirectory getData:nil fileNameString:@"AllWord"]
+//                                                  options:NSJSONReadingMutableContainers
+//                                                    error:&jsonError];
+//    
+//    if (jsonError) {
+//        NSLog(@"Error: %@", jsonError);
+//        return;
+//    }
+//    
+//    _tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
+//    
+//    [_tableView reloadData];
+//    
+//    return;
+    
     //DBから特定ワードを全て取得
     NSMutableArray *words = [WordDB selectTable];
     
@@ -147,7 +166,7 @@
     
     NSString *endpoint = @"https://api.twitter.com/1.1/search/tweets.json";
     
-    NSDictionary *parameters = @{@"q":wordsString,@"count":@"10"};
+    NSDictionary *parameters = @{@"q":wordsString,@"count":@"50"};
     NSError *error = nil;
     TWTRAPIClient *client = [[TWTRAPIClient alloc] initWithUserID:userId];
     NSURLRequest *request = [client URLRequestWithMethod:@"GET"
@@ -172,6 +191,7 @@
                             return;
                         }
                         
+                        //一度内容をファイルを別名で書き出し、その後で改名して、その名前のファイルがある場合はそれを上書き
                         [CacheDirectory saveData:data directoryName:nil fileName:@"AllWord"];
                         
                         
@@ -184,12 +204,15 @@
                             return;
                         }
 //                        NSLog(@"json:%@",jsonData);
-//                        NSLog(@"maxidは、%@",jsonData[@"statuses"][@"max_id"]);
+                        
                         //search/tweets statusesの中のデータをツイート配列に入れる
                         weakSelf.tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
                         
                         [weakSelf.tableView reloadData];
                     }];
+    
+    
+    
     
 }
 

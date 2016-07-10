@@ -62,10 +62,8 @@
     //Kitを初期化
     [[Twitter sharedInstance] startWithConsumerKey:@"" consumerSecret:@""];
 
-    
     [Fabric with:@[[Twitter class]]];
 
-    
     // Override point for customization after application launch.
     return YES;
 }
