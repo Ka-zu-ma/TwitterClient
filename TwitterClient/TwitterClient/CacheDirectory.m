@@ -61,17 +61,6 @@ NSLog(@"パス:%@",savedPath);
     
     //保存処理を行う。ファイルにデータを書き出す
     [data writeToFile:savedPath atomically:YES];
-    
-    //以下のやり方だと、ファイルにデータが書き出されないためオフラインのときに画像表示されない
-    //失敗した場合には、NSErrorのインスタンスを得られるので、その情報を表示する。
-    /*NSFileManager *saveFileManager = [NSFileManager defaultManager];
-     NSError *saveError = nil;
-     BOOL success = [saveFileManager createFileAtPath:savedPath contents:data attributes:nil];
-     
-     if (!success) {
-     NSLog(@"failed to save image. reason is %@ - %@", saveError, saveError.userInfo);
-     
-     }*/
 
 }
 

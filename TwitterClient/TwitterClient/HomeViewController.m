@@ -115,25 +115,6 @@
 //あるワードを含むツイートを取得
 -(void)loadTweetsOfWords:(NSString *)userId{
     
-    //どういうときにキャッシュから取得してくるか
-    
-    //キャッシュファイルからデータ取得
-//    NSError *jsonError = nil;
-//    id jsonData = [NSJSONSerialization JSONObjectWithData:[CacheDirectory getData:nil fileNameString:@"AllWord"]
-//                                                  options:NSJSONReadingMutableContainers
-//                                                    error:&jsonError];
-//    
-//    if (jsonError) {
-//        NSLog(@"Error: %@", jsonError);
-//        return;
-//    }
-//    
-//    _tweets = [TWTRTweet tweetsWithJSONArray:jsonData[@"statuses"]];
-//    
-//    [_tableView reloadData];
-//    
-//    return;
-    
     //DBから特定ワードを全て取得
     NSMutableArray *words = [WordDB selectTable];
     
@@ -166,7 +147,7 @@
     
     NSString *endpoint = @"https://api.twitter.com/1.1/search/tweets.json";
     
-    NSDictionary *parameters = @{@"q":wordsString,@"count":@"50"};
+    NSDictionary *parameters = @{@"q":wordsString,@"count":@"10"};
     NSError *error = nil;
     TWTRAPIClient *client = [[TWTRAPIClient alloc] initWithUserID:userId];
     NSURLRequest *request = [client URLRequestWithMethod:@"GET"
@@ -196,7 +177,11 @@
                         
                         
                         NSError *jsonError = nil;
-                        id jsonData = [NSJSONSerialization JSONObjectWithData:data
+                        
+//                        NSLog(@"データ出力:%@",[[CacheDirectory getData:nil fileNameString:@"AllWord"] description]);
+                        
+                        //キャッシュからデータ取得
+                        id jsonData = [NSJSONSerialization JSONObjectWithData:[CacheDirectory getData:nil fileNameString:@"AllWord"]
                                                                       options:NSJSONReadingMutableContainers
                                                                         error:&jsonError];
                         if (jsonError) {
@@ -210,8 +195,6 @@
                         
                         [weakSelf.tableView reloadData];
                     }];
-    
-    
     
     
 }
